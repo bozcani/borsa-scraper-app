@@ -1,0 +1,4 @@
+borsa.egg-info
+build
+*.pyc
+dist
