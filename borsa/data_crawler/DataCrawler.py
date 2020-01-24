@@ -2,7 +2,6 @@ import urllib
 import json
 import utils
 import psycopg2
-import sqlite3 
 
 
 class DataCrawler:
