@@ -1,0 +1,20 @@
+{% if stock_market %}
+    <ul>
+    <li>Market id: {{ stock_market.market_id }} </li>
+    <li>Market name: {{ stock_market.market_name }}</li>
+    <li>Country: {{ stock_market.country }}</li>
+    <li>City: {{ stock_market.city }}</li>
+    <li>Time zone: {{ stock_market.time_zone }}</li>
+    <li>Open time: {{ stock_market.open_time }}</li>
+    <li>Close time: {{ stock_market.close_time }}</li>
+    <li>Lunch break: {{ stock_market.lunch_break }}</li>
+
+    </ul>
+    
+    <a href="/BasicApp/"> Goto homepage</a>
+   
+
+
+{% else %}
+    <p>Stock market does not exist.</p>
+{% endif %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from django.http import HttpResponse
 from django.template import loader
@@ -6,8 +6,10 @@ from .models import StockMarket
 
 def home(request):
 
+    stock_markets = StockMarket.objects.all()
+
     template = loader.get_template('home.html')
-    context = {}
+    context = {'stock_markets': stock_markets}
     return HttpResponse(template.render(context, request))    
 
 
@@ -36,9 +38,9 @@ def add_stock_market_result(request):
     new_market.save()
     return HttpResponse("hello")   
                  
-    #new_person.save()
-    #context = {
-    #    'first_name':first_name,
-    #    'last_name':last_name,
-    #    'birthdate':birthdate
-    #}        
+def stock_market(request, market_id):
+    stock_market = get_object_or_404(StockMarket, pk=market_id)
+    context = {
+        'stock_market':stock_market,
+    }
+    return render(request, 'stock_market.html', context)      

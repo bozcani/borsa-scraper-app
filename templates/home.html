@@ -1,5 +1,16 @@
 <p><b>Welcome to BORSA homepage</b></p>
-    
+
+{% if stock_markets%}
+<p><b>Stock markets:</b></p>
+<ul>
+{% for stock_market in stock_markets %}
+    <li><a href="stock_market/{{stock_market.market_id}}/">{{stock_market.market_id}}, {{stock_market.market_name}}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+
+
+<p>Add new stock markets</p>
 <form action="/BasicApp/add_stock_market_result">
 <p>
 <input type="text" name="market_id" class="form-control"
