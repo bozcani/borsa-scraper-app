@@ -5,9 +5,9 @@ from django.db import models
 class StockMarket(models.Model):
 
     market_id = models.CharField(max_length=10, primary_key=True)
-    market_name = models.CharField(max_length=10)
-    country = models.CharField(max_length=10)
-    city = models.CharField(max_length=10)
+    market_name = models.CharField(max_length=20)
+    country = models.CharField(max_length=20)
+    city = models.CharField(max_length=20)
     time_zone = models.IntegerField()
     open_time = models.CharField(max_length=5) # Local time
     close_time = models.CharField(max_length=5) # Local time
@@ -17,15 +17,15 @@ class StockMarket(models.Model):
         db_table = 'stock_market_lookup_table'    
 
     def __str__(self):
-        print("{}".format(self.market_id))
+        return "<StockMarket Object> market_id {}".format(self.market_id)
 
 
 class Stock(models.Model):
 
     stock_symbol = models.CharField(max_length=5, primary_key=True)
-    stock_name = models.CharField(max_length=10)
+    stock_name = models.CharField(max_length=30)
     stock_market = models.ForeignKey(StockMarket, on_delete=models.CASCADE)
-    info_link = models.CharField(max_length=50)
+    info_link = models.CharField(max_length=100)
 
     class Meta:
         db_table = 'stock_lookup_table'           
