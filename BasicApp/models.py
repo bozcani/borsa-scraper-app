@@ -16,6 +16,8 @@ class StockMarket(models.Model):
     class Meta:
         db_table = 'stock_market_lookup_table'    
 
+    def __str__(self):
+        print("{}".format(self.market_id))
 
 
 class Stock(models.Model):
