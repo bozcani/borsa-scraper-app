@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from django.http import HttpResponse
 from django.template import loader
@@ -36,11 +36,18 @@ def add_stock_market_result(request):
     print(new_market)   
 
     new_market.save()
-    return HttpResponse("hello")   
+    return redirect("/BasicApp")
                  
 def stock_market(request, market_id):
     stock_market = get_object_or_404(StockMarket, pk=market_id)
     context = {
         'stock_market':stock_market,
     }
-    return render(request, 'stock_market.html', context)      
+    return render(request, 'stock_market.html', context)
+
+def delete(request,market_id):
+    stock_market = get_object_or_404(StockMarket, pk=market_id)
+
+    stock_market.delete()
+
+    return redirect("/BasicApp")

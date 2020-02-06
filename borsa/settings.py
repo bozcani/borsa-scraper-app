@@ -77,8 +77,8 @@ WSGI_APPLICATION = 'borsa.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'borsadb',
-        'USER': 'ilker',
+        'NAME': 'postgres',
+        'USER': 'postgres',
         'PASSWORD': '1234567890',
         'HOST': '127.0.0.1',
         'PORT': '5432',
@@ -121,5 +121,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+STATICFILES_DIRS = (
+  os.path.join(BASE_DIR, 'static'),
+)
+
 
 STATIC_URL = '/static/'
