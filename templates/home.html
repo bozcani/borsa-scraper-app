@@ -1,51 +1,142 @@
-<p><b>Welcome to BORSA homepage</b></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '../static/home.css' %}">
 
-{% if stock_markets%}
-<p><b>Stock markets:</b></p>
-<ul>
-{% for stock_market in stock_markets %}
-    <li><a href="stock_market/{{stock_market.market_id}}/">{{stock_market.market_id}}, {{stock_market.market_name}}</a></li>
-{% endfor %}
-</ul>
-{% endif %}
+    
+</head>
+<body>
+
+    <p id="title"><b>Welcome to BORSA homepage</b></p>
 
 
-<p>Add new stock markets</p>
-<form action="/BasicApp/add_stock_market_result">
-<p>
-<input type="text" name="market_id" class="form-control"
-                                  placeholder="Market id" /> </p>
 
-<p>
-<input type="text" name="market_name" class="form-control"
-                                    placeholder="Market name" /> </p>    
-                                    
-<p>
-    <input type="text" name="country" class="form-control"
-                                        placeholder="Country" /> </p>                                    
 
-<p>
-<input type="text" name="city" class="form-control"
-                                    placeholder="City" /> </p>   
 
-<p>
-    <input type="text" name="time_zone" class="form-control"
-                                        placeholder="Timezone" /> </p> 
-                                                                            
+
+<div class="container">
+    <form action="/BasicApp/add_stock_market_result">
+        <div class="add-new-stock">
+            <p>Add new stock markets</p>
+            <div class="form-group">   
+                <p>
+                <input type="text" name="market_id" class="form-control"
+                                                placeholder="Market id" /> </p>
+
+                <p>
+                <input type="text" name="market_name" class="form-control"
+                                                    placeholder="Market name" /> </p>    
+                                                    
+                <p>
+                    <input type="text" name="country" class="form-control"
+                                                        placeholder="Country" /> </p>                                    
+
+                <p>
+                <input type="text" name="city" class="form-control"
+                                                    placeholder="City" /> </p>   
+
+                <p>
+                    <input type="text" name="time_zone" class="form-control"
+                                                        placeholder="Timezone" /> </p>
+
+                        
+                <p>
+                    <input type="text" name="open_time" class="form-control"
+                                                        placeholder="Open time" /> </p>                                    
+
+                <p>
+                <input type="text" name="close_time" class="form-control"
+                                                    placeholder="Close time" /> </p>   
+
+                <p>
+                    <input type="text" name="lunch_break" class="form-control"
+                                                        placeholder="Lunch break" /> </p>
+
+                <button type="submit" class="btn btn-success" value="Add">Submit</button>
+            </div>
+        </div>
+    </form>
+                                                
+
            
-<p>
-    <input type="text" name="open_time" class="form-control"
-                                        placeholder="Open time" /> </p>                                    
+    <div class="show-new-stock">
+        <p><b>Stock markets</b></p>
 
-<p>
-<input type="text" name="close_time" class="form-control"
-                                    placeholder="Close time" /> </p>   
+        {% if stock_markets %}
 
-<p>
-    <input type="text" name="lunch_break" class="form-control"
-                                        placeholder="Lunch break" /> </p>                                         
+            <table class="table">
+                
+                <thead>
+                <tr>
+                    
+                    <th scope="col">id</th>
+
+                    <th scope="col">Market Name</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    
+                </tr>
+                </thead>
+
+                <tbody>
+                    {%for stock_market in stock_markets%}
+                    <tr>
+                        <th scope="row">{{stock_market.market_id}}</th>
+                        <td>{{stock_market.market_name}}</td>
+                        <td><a href="stock_market/{{stock_market.market_id}}/" class="btn btn-info">Details</a></td>
+                        <td><a href="delete/{{stock_market.market_id}}/" class="btn btn-danger">Delete</a></td>
+                        
+                        
+                    
+                    </tr>
+
+                    {%endfor%}
+                
+                </tbody>
+            </table>
+
+            {% else %}
+            <div class="alert alert-danger">
+                No markets have been added yet...
+            </div>
+            {% endif%}
+                </div>
+            </div>
+    </div>
+
+       
+  
+
+</div>
+
+ 
 
 
-    <input type="submit" value="Add" />
-</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
 
