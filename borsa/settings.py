@@ -77,14 +77,17 @@ WSGI_APPLICATION = 'borsa.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
+        'NAME': 'borsadb',
+        'USER': 'ilker',
         'PASSWORD': '1234567890',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
 
+import sys
+if 'test' in sys.argv or 'test_coverage' in sys.argv: # Covers regular testing and django-coverage
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
