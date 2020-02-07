@@ -35,6 +35,20 @@ class HomeTests(TestCase):
         stock_market_url = reverse('BasicApp:delete_stock_market', kwargs={'market_id': 'TEST'})
         self.assertContains(self.response, 'a href="{}"'.format(stock_market_url[10:])) # Remove "/BasicApp/" from leading.
 
+    def test_new_StockMarket_post_data_success_status_code(self):
+        url = reverse('BasicApp:home')
+        data = {'market_id':'JUST_CREATED2', 
+                'market_name':'New stock market',
+                'country':'Almanya',
+                'city':'Aydin',
+                'time_zone':3,
+                'open_time':'10:00',
+                'close_time':'18:00',
+                'lunch_break':'13:00-14:00'}
+
+        response = self.client.post(url, data)
+        self.assertEquals(response.status_code, 200)    
+
 
 class StockMarketTests(TestCase):
     def setUp(self):
@@ -69,9 +83,8 @@ class StockMarketTests(TestCase):
         self.assertContains(response, 'href="{}"'.format(homepage_url))
 
 class AddStockMarket(TestCase):
-    def test_new_StockMarket_valid_post_data(self):
-        url = reverse('BasicApp:add_stock_market_result')
-        data = {'market_id':'JUST_CREATED', 
+    def setUp(self):
+        self.form_data = {'market_id':'JUST_CREATED', 
                 'market_name':'New stock market',
                 'country':'Almanya',
                 'city':'Aydin',
@@ -80,8 +93,12 @@ class AddStockMarket(TestCase):
                 'close_time':'18:00',
                 'lunch_break':'13:00-14:00'}
 
-        response = self.client.get(url, data)
-        #for o in StockMarket.objects.all():
-        #   print(o)
-        #self.assertEquals(response.status_code, 200)    
-        #self.assertTrue(StockMarket.objects.filter(pk="JUST_CREATED").exists())
+    def test_new_StockMarket_valid_get_data(self):
+        url = reverse('BasicApp:add_stock_market_result')
+        response = self.client.get(url, self.form_data)
+        self.assertTrue(StockMarket.objects.filter(pk="JUST_CREATED").exists())
+
+    def test_new_StockMarket_view_success_status_code(self):
+        url = reverse('BasicApp:add_stock_market_result')
+        response = self.client.get(url, self.form_data)
+        self.assertEquals(response.status_code, 302)    
