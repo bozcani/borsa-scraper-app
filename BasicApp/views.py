@@ -45,7 +45,7 @@ def stock_market(request, market_id):
     }
     return render(request, 'stock_market.html', context)
 
-def delete(request,market_id):
+def delete_stock_market(request,market_id):
     stock_market = get_object_or_404(StockMarket, pk=market_id)
 
     stock_market.delete()
