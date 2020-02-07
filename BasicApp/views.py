@@ -33,8 +33,6 @@ def add_stock_market_result(request):
                         close_time=close_time,
                         lunch_break=lunch_break)
 
-    print(new_market)   
-
     new_market.save()
     return redirect("/BasicApp")
                  
