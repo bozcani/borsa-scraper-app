@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import json
+import pathlib
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -74,14 +76,27 @@ WSGI_APPLICATION = 'borsa.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+
+path = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
+config = os.path.join(path,"config","config.json")
+with open(config) as config_file:
+    data = json.load(config_file)
+
+ENGINE = data["ENGINE"]
+NAME = data["NAME"]
+USER = data["USER"]
+PASSWORD = data["PASSWORD"]
+HOST = data["HOST"]
+PORT = data["PORT"]
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'borsadb',
-        'USER': 'ilker',
-        'PASSWORD': '1234567890',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': ENGINE,
+        'NAME': NAME,
+        'USER': USER,
+        'PASSWORD': PASSWORD,
+        'HOST': HOST,
+        'PORT': PORT,
     }
 }
 
