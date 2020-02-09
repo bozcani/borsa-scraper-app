@@ -4,14 +4,14 @@ from django.db import models
 
 class StockMarket(models.Model):
 
-    market_id = models.CharField(max_length=10, primary_key=True)
+    market_id = models.CharField(max_length=20, primary_key=True)
     market_name = models.CharField(max_length=50)
-    country = models.CharField(max_length=20)
-    city = models.CharField(max_length=20)
-    time_zone = models.IntegerField()
-    open_time = models.CharField(max_length=5) # Local time
-    close_time = models.CharField(max_length=5) # Local time
-    lunch_break = models.CharField(max_length=11) # Local time
+    country = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    time_zone = models.CharField(max_length=10)
+    open_time = models.CharField(max_length=50) # Local time
+    close_time = models.CharField(max_length=50) # Local time
+    lunch_break = models.CharField(max_length=50) # Local time
 
     class Meta:
         db_table = 'stock_market_lookup_table'    
