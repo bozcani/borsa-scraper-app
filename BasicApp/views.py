@@ -49,3 +49,7 @@ def delete_stock_market(request,market_id):
     stock_market.delete()
 
     return redirect("/BasicApp")
+
+def data_manager(request):
+    context = {}
+    return render(request, 'data_manager.html', context)
