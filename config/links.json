@@ -1,5 +1,6 @@
 {
     "stock_data_sources": {
       "yahoo_finance":"https://query1.finance.yahoo.com/v7/finance/download/TICKER_SYMBOL.IS?period1=0&period2=999999999999999999&interval=1d&events=history&crumb=Q/WzeQ76wna"},
-    "ticker_symbols_sources": {"bist":"https://www.kap.org.tr/en/api/exportCompanyPages/bist-sirketler/xls"}
+    "ticker_symbols_sources": {"bist":"https://www.kap.org.tr/en/api/exportCompanyPages/bist-sirketler/xls"},
+    "list_of_stock_markets_on_wikipedia":"https://en.wikipedia.org/wiki/List_of_stock_exchange_trading_hours"
   }

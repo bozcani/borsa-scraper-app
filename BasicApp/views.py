@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.template import loader
 from .models import StockMarket
-
+from lib.data_scraper.get_stock_markets_info import create_stock_market_tables_from_wikipedia
 def home(request):
 
     stock_markets = StockMarket.objects.all()
@@ -51,5 +51,13 @@ def delete_stock_market(request,market_id):
     return redirect("/BasicApp")
 
 def data_manager(request):
-    context = {}
-    return render(request, 'data_manager.html', context)
+
+    stock_markets = StockMarket.objects.all()
+
+    template = loader.get_template('data_manager.html')
+    context = {'stock_markets': stock_markets}
+    return HttpResponse(template.render(context, request)) 
+
+def update_stock_market_lookup_table(request):
+    # TODO Implement database update.
+    return redirect("/BasicApp/data_manager")    
