@@ -45,4 +45,4 @@ def create_stock_market_tables_from_wikipedia(url):
                 data[list(data.keys())[i]].append(cols[i])
   
 
-
+    return data

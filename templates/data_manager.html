@@ -8,11 +8,11 @@ Data manager
 
     <p>Stock markets</p> 
     {%for stock_market in stock_markets%}
-    <tr>
+    <tr> <p>
         <th scope="row">{{stock_market.market_id}}</th>
         <td>{{stock_market.market_name}}</td>
         <td><a href="stock_market/{{stock_market.market_id}}/" class="btn btn-info">Details</a></td>
-        
+    </p>
         
     
     </tr>
