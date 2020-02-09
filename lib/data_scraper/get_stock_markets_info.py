@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 
 url = "https://en.wikipedia.org/wiki/List_of_stock_exchange_trading_hours"
 
-from ..BasicApp.models import StockMarket
 
 def create_stock_market_tables_from_wikipedia(url):
 
@@ -49,4 +48,3 @@ def create_stock_market_tables_from_wikipedia(url):
   
 
 
-create_stock_market_tables_from_wikipedia(url)

@@ -2,7 +2,7 @@ import urllib.request as urllib
 from bs4 import BeautifulSoup
 
 
-def get_bist_tickers(link_to_source):
+def get_bist_tickers_info(link_to_source):
 
     #r = requests.get(link_to_source, "bist-ticker-names.xls")
     #a = urllib.urlretrieve(link_to_source)
