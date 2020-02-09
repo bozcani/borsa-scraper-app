@@ -5,7 +5,7 @@ from django.db import models
 class StockMarket(models.Model):
 
     market_id = models.CharField(max_length=10, primary_key=True)
-    market_name = models.CharField(max_length=20)
+    market_name = models.CharField(max_length=50)
     country = models.CharField(max_length=20)
     city = models.CharField(max_length=20)
     time_zone = models.IntegerField()
