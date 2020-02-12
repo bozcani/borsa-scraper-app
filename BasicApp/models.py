@@ -29,3 +29,12 @@ class Stock(models.Model):
 
     class Meta:
         db_table = 'stock_lookup_table'           
+
+class LookupTablesUpdateStatus(models.Model):
+    table_name = models.CharField(max_length=40, primary_key=True)    
+    last_update = models.TimeField(autonow=True)
+    source = models.CharField(max_length=100)
+
+class StockDataLastUpdate(models.Model):
+    stock_market = models.OneToOneField(Stock, on_delete=models.CASCADE, primary_key=True)
+    last_update = DateTimeField()      
