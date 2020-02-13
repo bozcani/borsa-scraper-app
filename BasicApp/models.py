@@ -32,9 +32,9 @@ class Stock(models.Model):
 
 class LookupTablesUpdateStatus(models.Model):
     table_name = models.CharField(max_length=40, primary_key=True)    
-    last_update = models.TimeField(autonow=True)
+    last_update = models.TimeField(auto_now=True)
     source = models.CharField(max_length=100)
 
 class StockDataLastUpdate(models.Model):
     stock_market = models.OneToOneField(Stock, on_delete=models.CASCADE, primary_key=True)
-    last_update = DateTimeField()      
+    last_update = models.DateTimeField()      

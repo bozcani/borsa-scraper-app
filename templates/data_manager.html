@@ -2,9 +2,12 @@ Data manager
 
 
 <form action="/BasicApp/update_stock_market_lookup_table">
+    <input type="submit" value="Scrape stock markets lookup table" />
+</form>
 
-        <input type="submit" value="Scrape stock markets lookup table" />
-    </form>
+<form action="/BasicApp/create_LookupTablesUpdateStatus_table">
+    <input type="submit" value="Create LookupTablesUpdateStatus table" />
+ </form>
 
     <p>Stock markets</p> 
     {%for stock_market in stock_markets%}

@@ -63,7 +63,6 @@ def data_manager(request):
     return HttpResponse(template.render(context, request)) 
 
 def update_stock_market_lookup_table(request):
-    # TODO Implement database update.
     path = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
     fname = os.path.join(path,"config","links.json")
     with open(fname) as json_file:
@@ -87,3 +86,12 @@ def update_stock_market_lookup_table(request):
         new_market.save()
 
     return redirect("/BasicApp/data_manager")    
+
+def create_LookupTablesUpdateStatus_table(request):
+    #TODO implement this
+    stock_markets = StockMarket.objects.all()
+
+    template = loader.get_template('data_manager.html')
+    context = {'stock_markets': stock_markets}
+
+    return redirect("/BasicApp/data_manager")
