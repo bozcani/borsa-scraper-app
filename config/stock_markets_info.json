@@ -1,0 +1,572 @@
+[
+   {
+      "market_id": "NZSX",
+      "market_name": "New Zealand Stock Market",
+      "country": "New Zealand",
+      "city": "Wellington",
+      "time_zone": "+12",
+      "open_time": "10:00",
+      "close_time": "16:45",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "ASX",
+      "market_name": "Australian Securities Exchange",
+      "country": "Australia",
+      "city": "Sydney",
+      "time_zone": "+10",
+      "open_time": "10:00",
+      "close_time": "16:00",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "TSE",
+      "market_name": "Tokyo Stock Exchange",
+      "country": "Japan",
+      "city": "Tokyo",
+      "time_zone": "+9",
+      "open_time": "09:00",
+      "close_time": "15:00",
+      "lunch_break": "11:30-12:30"
+   },
+   {
+      "market_id": "KRX",
+      "market_name": "Korea Stock Exchange",
+      "country": "South Korea",
+      "city": "Busan & Seoul",
+      "time_zone": "+9",
+      "open_time": "09:00",
+      "close_time": "15:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "MYX",
+      "market_name": "Bursa Malaysia",
+      "country": "Malaysia",
+      "city": "Kuala Lumpur",
+      "time_zone": "+8",
+      "open_time": "09:00",
+      "close_time": "17:00",
+      "lunch_break": "12:30-14:30"
+   },
+   {
+      "market_id": "SGX",
+      "market_name": "Singapore Exchange",
+      "country": "Singapore",
+      "city": "Singapore",
+      "time_zone": "+8",
+      "open_time": "09:00",
+      "close_time": "17:00",
+      "lunch_break": "12:00-13:00"
+   },
+   {
+      "market_id": "TWSE",
+      "market_name": "Taiwan Stock Exchange",
+      "country": "Taiwan (Republic of China)",
+      "city": "Taipei",
+      "time_zone": "+8",
+      "open_time": "09:00",
+      "close_time": "13:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "HKFE",
+      "market_name": "Hong Kong Futures Exchange",
+      "country": "Hong Kong",
+      "city": "Hong Kong",
+      "time_zone": "+8",
+      "open_time": "09:15",
+      "close_time": "16:00",
+      "lunch_break": "12:00-13:00"
+   },
+   {
+      "market_id": "HKEX",
+      "market_name": "Hong Kong Stock Exchange",
+      "country": "Hong Kong",
+      "city": "Hong Kong",
+      "time_zone": "+8",
+      "open_time": "09:30",
+      "close_time": "16:00",
+      "lunch_break": "12:00-13:00"
+   },
+   {
+      "market_id": "SSE",
+      "market_name": "Shanghai Stock Exchange",
+      "country": "China",
+      "city": "Shanghai",
+      "time_zone": "+8",
+      "open_time": "09:30",
+      "close_time": "15:00",
+      "lunch_break": "11:30-13:00"
+   },
+   {
+      "market_id": "SZSE",
+      "market_name": "Shenzhen Stock Exchange",
+      "country": "China",
+      "city": "Shenzhen",
+      "time_zone": "+8",
+      "open_time": "09:30",
+      "close_time": "15:00",
+      "lunch_break": "11:30-13:00"
+   },
+   {
+      "market_id": "PSE",
+      "market_name": "Philippine Stock Exchange",
+      "country": "Philippines",
+      "city": "Manila",
+      "time_zone": "+8",
+      "open_time": "09:30",
+      "close_time": "15:30",
+      "lunch_break": "12:00-13:30"
+   },
+   {
+      "market_id": "IDX",
+      "market_name": "Indonesia Stock Exchange",
+      "country": "Indonesia",
+      "city": "Jakarta",
+      "time_zone": "+7",
+      "open_time": "09:00",
+      "close_time": "16:00",
+      "lunch_break": "12:00-13:30 (Mon-Thu) 11:30-14:00 (Fri)"
+   },
+   {
+      "market_id": "HOSE",
+      "market_name": "Hochiminh Stock Exchange",
+      "country": "Vietnam",
+      "city": "Hochiminh",
+      "time_zone": "+7",
+      "open_time": "09:00",
+      "close_time": "14:45",
+      "lunch_break": "11:30-13:00"
+   },
+   {
+      "market_id": "HNX",
+      "market_name": "Hanoi Stock Exchange",
+      "country": "Vietnam",
+      "city": "Hanoi",
+      "time_zone": "+7",
+      "open_time": "09:00",
+      "close_time": "14:45",
+      "lunch_break": "11:30-13:00"
+   },
+   {
+      "market_id": "SET",
+      "market_name": "Stock Exchange of Thailand",
+      "country": "Thailand",
+      "city": "Bangkok",
+      "time_zone": "+7",
+      "open_time": "10:00",
+      "close_time": "16:30",
+      "lunch_break": "12:30-14:30"
+   },
+   {
+      "market_id": "BSE",
+      "market_name": "Bombay Stock Exchange",
+      "country": "India",
+      "city": "Mumbai",
+      "time_zone": "+5.5",
+      "open_time": "09:15",
+      "close_time": "15:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "NSE",
+      "market_name": "National Stock Exchange of India",
+      "country": "India",
+      "city": "Mumbai",
+      "time_zone": "+5.5",
+      "open_time": "09:15",
+      "close_time": "15:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "CSE",
+      "market_name": "Colombo Stock Exchange",
+      "country": "Sri Lanka",
+      "city": "Colombo",
+      "time_zone": "+5.5",
+      "open_time": "09:30",
+      "close_time": "14:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "DSE",
+      "market_name": "Dhaka Stock Exchange",
+      "country": "Bangladesh",
+      "city": "Dhaka",
+      "time_zone": "+6",
+      "open_time": "10:30",
+      "close_time": "14:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "PSX",
+      "market_name": "Pakistan Stock Exchange",
+      "country": "Pakistan",
+      "city": "Karachi",
+      "time_zone": "+5",
+      "open_time": "09:30",
+      "close_time": "15:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "AMX",
+      "market_name": "Armenia Securities Exchange",
+      "country": "Armenia",
+      "city": "Yerevan",
+      "time_zone": "+4",
+      "open_time": "10:00",
+      "close_time": "15:00",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "TADAWUL",
+      "market_name": "Saudi Stock Exchange",
+      "country": "Saudi Arabia",
+      "city": "Riyadh",
+      "time_zone": "+3",
+      "open_time": "10:00",
+      "close_time": "15:00",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "BIST",
+      "market_name": "Borsa Istanbul",
+      "country": "Turkey",
+      "city": "Istanbul",
+      "time_zone": "+3",
+      "open_time": "10:00",
+      "close_time": "18:00",
+      "lunch_break": "13:00-14:00"
+   },
+   {
+      "market_id": "MOEX",
+      "market_name": "Moscow Exchange",
+      "country": "Russia",
+      "city": "Moscow",
+      "time_zone": "+3",
+      "open_time": "10:00",
+      "close_time": "18:45",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "JSE",
+      "market_name": "Johannesburg Stock Exchange",
+      "country": "South Africa",
+      "city": "Johannesburg",
+      "time_zone": "+2",
+      "open_time": "09:00",
+      "close_time": "17:00",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "TASE",
+      "market_name": "Tel Aviv Stock Exchange",
+      "country": "Israel",
+      "city": "Tel Aviv",
+      "time_zone": "+2",
+      "open_time": "09:00",
+      "close_time": "17:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "FSX",
+      "market_name": "Frankfurt Stock Exchange (Xetra)",
+      "country": "Germany",
+      "city": "Frankfurt",
+      "time_zone": "+1",
+      "open_time": "08:00",
+      "close_time": "20:00",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "EUREX",
+      "market_name": "Eurex Exchange",
+      "country": "Germany",
+      "city": "Eschborn",
+      "time_zone": "+1",
+      "open_time": "08:00",
+      "close_time": "22:00",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "VSE",
+      "market_name": "Wiener Borse AG",
+      "country": "Austria",
+      "city": "Vienna",
+      "time_zone": "+1",
+      "open_time": "08:55",
+      "close_time": "17:35",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "EGX",
+      "market_name": "Egyptian Exchange",
+      "country": "Egypt",
+      "city": "Cairo",
+      "time_zone": "+2",
+      "open_time": "10:00",
+      "close_time": "14:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "OMX",
+      "market_name": "Helsinki Stock Exchange",
+      "country": "Finland",
+      "city": "Helsinki",
+      "time_zone": "+2",
+      "open_time": "10:00",
+      "close_time": "18:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "UX",
+      "market_name": "Ukrainian Exchange",
+      "country": "Ukraine",
+      "city": "Kiev",
+      "time_zone": "+2",
+      "open_time": "10:00",
+      "close_time": "17:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "OMXR",
+      "market_name": "Riga Stock Exchange",
+      "country": "Latvia",
+      "city": "Riga",
+      "time_zone": "+2",
+      "open_time": "10:00",
+      "close_time": "16:00",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "OMXT",
+      "market_name": "Tallinn Stock Exchange",
+      "country": "Estonia",
+      "city": "Tallinn",
+      "time_zone": "+2",
+      "open_time": "10:00",
+      "close_time": "16:00",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "OMXV",
+      "market_name": "NASDAQ OMX Vilnius",
+      "country": "Lithuania",
+      "city": "Vilnius",
+      "time_zone": "+2",
+      "open_time": "10:00",
+      "close_time": "16:00",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "ASE",
+      "market_name": "Amman Stock Exchange",
+      "country": "Jordan",
+      "city": "Amman",
+      "time_zone": "+2",
+      "open_time": "10:00",
+      "close_time": "12:00",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "GPW",
+      "market_name": "Warsaw Stock Exchange",
+      "country": "Poland",
+      "city": "Warsaw",
+      "time_zone": "+1",
+      "open_time": "09:00",
+      "close_time": "17:00",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "EPA",
+      "market_name": "Euronext Paris",
+      "country": "France",
+      "city": "Paris",
+      "time_zone": "+1",
+      "open_time": "09:00",
+      "close_time": "17:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "BX",
+      "market_name": "Berne eXchange",
+      "country": "Switzerland",
+      "city": "Berne",
+      "time_zone": "+1",
+      "open_time": "09:00",
+      "close_time": "16:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "SIX",
+      "market_name": "Swiss Exchange",
+      "country": "Switzerland",
+      "city": "Zurich",
+      "time_zone": "+1",
+      "open_time": "09:00",
+      "close_time": "17:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "BME",
+      "market_name": "Spanish Stock Exchange",
+      "country": "Spain",
+      "city": "Madrid",
+      "time_zone": "+1",
+      "open_time": "09:00",
+      "close_time": "17:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "MTA",
+      "market_name": "Milan Stock Exchange",
+      "country": "Italy",
+      "city": "Milan",
+      "time_zone": "+1",
+      "open_time": "09:00",
+      "close_time": "17:35",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "AMS",
+      "market_name": "Euronext Amsterdam",
+      "country": "Netherlands",
+      "city": "Amsterdam",
+      "time_zone": "+1",
+      "open_time": "09:00",
+      "close_time": "17:40",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "BRU",
+      "market_name": "Euronext Brussels",
+      "country": "Belgium",
+      "city": "Brussels",
+      "time_zone": "+1",
+      "open_time": "09:00",
+      "close_time": "17:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "LuxSE",
+      "market_name": "Luxembourg Stock Exchange",
+      "country": "Luxembourg",
+      "city": "Luxembourg City",
+      "time_zone": "+1",
+      "open_time": "09:00",
+      "close_time": "17:35",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "OSE",
+      "market_name": "Oslo Stock Exchange",
+      "country": "Norway",
+      "city": "Oslo",
+      "time_zone": "+1",
+      "open_time": "09:00",
+      "close_time": "16:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "LSE",
+      "market_name": "London Stock Exchange",
+      "country": "United Kingdom",
+      "city": "London",
+      "time_zone": "+0",
+      "open_time": "08:00",
+      "close_time": "16:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "PSI",
+      "market_name": "Euronext Lisbon",
+      "country": "Portugal",
+      "city": "Lisbon",
+      "time_zone": "+0",
+      "open_time": "08:00",
+      "close_time": "16:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "MSE",
+      "market_name": "Malta Stock Exchange",
+      "country": "Malta",
+      "city": "Valletta",
+      "time_zone": "+1",
+      "open_time": "09:30",
+      "close_time": "12:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "Bovespa",
+      "market_name": "Bolsa de Valores de Sao Paulo",
+      "country": "Brazil",
+      "city": "Sao Paulo",
+      "time_zone": "-3",
+      "open_time": "10:00",
+      "close_time": "17:30",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "SVGEX",
+      "market_name": "Saint Vincent and the Grenadines Exchange",
+      "country": "Saint Vincent and the Grenadines",
+      "city": "Kingstown",
+      "time_zone": "- 4",
+      "open_time": "09:00",
+      "close_time": "16:00",
+      "lunch_break": "11:30-13:00"
+   },
+   {
+      "market_id": "BCBA",
+      "market_name": "Buenos Aires Stock Exchange",
+      "country": "Argentina",
+      "city": "Buenos Aires",
+      "time_zone": "-3",
+      "open_time": "11:00",
+      "close_time": "17:00",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "NYSE",
+      "market_name": "New York Stock Exchange",
+      "country": "United States",
+      "city": "New York",
+      "time_zone": "-5",
+      "open_time": "09:30",
+      "close_time": "16:00",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "NASDAQ",
+      "market_name": "NASDAQ",
+      "country": "United States",
+      "city": "New York",
+      "time_zone": "-5",
+      "open_time": "09:30",
+      "close_time": "16:00",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "TSX",
+      "market_name": "Toronto Stock Exchange",
+      "country": "Canada",
+      "city": "Toronto",
+      "time_zone": "-5",
+      "open_time": "09:30",
+      "close_time": "16:00",
+      "lunch_break": "No"
+   },
+   {
+      "market_id": "BMV",
+      "market_name": "Mexican Stock Exchange",
+      "country": "Mexico",
+      "city": "Mexico City",
+      "time_zone": "-6",
+      "open_time": "08:30",
+      "close_time": "15:00",
+      "lunch_break": "No"
+   }
+]
