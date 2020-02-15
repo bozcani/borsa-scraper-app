@@ -5,9 +5,9 @@ from bs4 import BeautifulSoup
 def get_bist_tickers_info(link_to_source):
 
     #r = requests.get(link_to_source, "bist-ticker-names.xls")
-    #a = urllib.urlretrieve(link_to_source)
+    a = urllib.urlretrieve(link_to_source)
     #print(a)
-    a = ("tmpp285ccnk",3)
+    #a = ("tmpp285ccnk",3)
     a = open(a[0], "r")
     soup = BeautifulSoup(a, 'html.parser')
     #print(soup.prettify())
@@ -25,6 +25,6 @@ def get_bist_tickers_info(link_to_source):
 
         link = item.find("a",href=True).get("href")
 
-        res.append([tickers, name, link])
+        res.append([tickers, name, "https://www.kap.org.tr/"+link])
 
     return res
