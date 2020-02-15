@@ -2,9 +2,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from django.http import HttpResponse
 from django.template import loader
-from .models import StockMarket, LookupTablesUpdateStatus
+from .models import StockMarket, Stock, LookupTablesUpdateStatus
 
 from lib.data_scraper.get_stock_markets_info import create_stock_market_tables_from_wikipedia
+from lib.data_scraper.get_tickers_info import get_bist_tickers_info
+
 import json
 import os
 
@@ -105,3 +107,53 @@ def update_stock_market_lookup_table(request):
     context = {'stock_markets': stock_markets,
                 'log_info': log_info}
     return HttpResponse(template.render(context, request)) 
+
+def update_stock_lookup_table(request):
+    path = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
+    fname = os.path.join(path,"config","links.json")
+    with open(fname) as json_file:
+        data = json.load(json_file)
+
+
+    # Get market_id.
+    market_id = request.GET.get('market_id')
+
+    added_stocks = []
+    skipped_stocks = []
+    try:
+        link = data['ticker_symbols_sources'][market_id.lower()]
+        stock_market = StockMarket.objects.get(market_id=market_id.upper())
+
+        if market_id.lower()=='bist':
+            tickers_data = get_bist_tickers_info(link)
+            
+            for ticker_data in tickers_data:
+                if not Stock.objects.filter(stock_symbol=ticker_data[0][0]).exists():
+                    new_stock = Stock(stock_symbol = ticker_data[0][0],
+                                        stock_market = stock_market,
+                                        stock_name = ticker_data[1],
+                                        info_link = ticker_data[2])
+                    added_stocks.append(ticker_data[0][0])
+                    print("Added: ", new_stock )
+                    new_stock.save()                    
+
+                else:
+                    print(Stock.objects.get(stock_symbol=ticker_data[0][0]), " exists.")
+                    skipped_stocks.append(ticker_data[0][0])
+
+        log_info = "ADDED STOCKS:\n"
+        log_info += ", ".join(added_stocks)
+        log_info += '\n'
+        log_info += "SKIPPED STOCKS (they already exist in the database):\n"
+        log_info += ", ".join(skipped_stocks)
+
+
+    except KeyError:
+        log_info = '{} stock info source is not available in the config file.'.format(market_id)
+
+    stock_markets = StockMarket.objects.all()
+    template = loader.get_template('data_manager.html')
+    context = {'stock_markets': stock_markets,
+                'log_info': log_info}
+    return HttpResponse(template.render(context, request)) 
+

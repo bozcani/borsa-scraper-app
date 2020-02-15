@@ -21,7 +21,7 @@
 
 {% if stock_markets %}
 
-<form action="/BasicApp/update_stock_market_lookup_table">
+<form action="/BasicApp/update_stock_lookup_table">
     <select name="market_id">
         {% for stock_market in stock_markets %}
         <option value="{{ stock_market.market_id }}" selected="selected"> {{ stock_market.market_id }} </option>
@@ -33,7 +33,7 @@
   </form>
 {% endif %}
 
-<a href="/BasicMarket/"> Goto homepage</a>
+<a href="/BasicApp/"> Goto homepage</a>
 
 {% if log_info %}
     <p> {{log_info|linebreaks}} </p>
