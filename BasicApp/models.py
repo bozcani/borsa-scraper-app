@@ -22,13 +22,16 @@ class StockMarket(models.Model):
 
 class Stock(models.Model):
 
-    stock_symbol = models.CharField(max_length=5, primary_key=True)
-    stock_name = models.CharField(max_length=30)
+    stock_symbol = models.CharField(max_length=20, primary_key=True)
+    stock_name = models.CharField(max_length=200)
     stock_market = models.ForeignKey(StockMarket, on_delete=models.CASCADE)
-    info_link = models.CharField(max_length=100)
+    info_link = models.CharField(max_length=500)
 
     class Meta:
         db_table = 'stock_lookup_table'           
+
+    def __str__(self):
+        return "<Stock Object> stock_symbol {}, stock_name {}, stock_market {}".format(self.stock_symbol, self.stock_name, self.stock_market.market_id)
 
 class LookupTablesUpdateStatus(models.Model):
     table_name = models.CharField(max_length=40, primary_key=True)    
