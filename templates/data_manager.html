@@ -1,7 +1,8 @@
 <h1><b>Data Manager</b></h1>
 
-
-
+<!-------------------------------------->
+<!-- Update stock market lookup table -->
+<!-------------------------------------->
 <h3><b>Update stock market lookup table</b></h3>
 <p> If you click the button below, stock_market_lookup_table will be updated according to the data on Wikipedia page. </p>
 <p> If stock market info already exists, it will be skipped. You can see skipped stock markets on the terminal.</p>
@@ -9,9 +10,12 @@
 <form action="/BasicApp/update_stock_market_lookup_table">
     <input type="submit" value="Update stock markets lookup table" />
 </form>
+<!-------------------------------------->
 
 
-
+<!-------------------------------------->
+<!------ Update stock lookup table ----->
+<!-------------------------------------->
 <h3><b>Update stock lookup table</b></h3>
 <p> If you click the button below, stock_lookup_table will be updated according to the data on congif file. </p>
 <p> If stock info already exists, it will be skipped. You can see skipped stocks on the terminal.</p>
@@ -32,12 +36,34 @@
     <input type="submit" value="Update stocks lookup table for selected market"/>
   </form>
 {% endif %}
+<!-------------------------------------->
+
+<!-------------------------------------->
+<!------ Delete all stock markets  ----->
+<!-------------------------------------->
+<h3><b>Delete all stock markets</b></h3>
+<p> If you click the button below, all stocks markets are deleted in stock_market_lookup_table. </p>
+<form action="/BasicApp/delete_stock_market_lookup_table">
+    <input type="submit" value="Delete all stock markets in the lookup table" />
+</form>
+
+
+
+
+<!-------------------------------------->
+<!----- Print log for giving info ------>
+<!-------------------------------------->
 
 <a href="/BasicApp/"> Goto homepage</a>
 
 {% if log_info %}
     <p> {{log_info|linebreaks}} </p>
 {% endif %}
+<!-------------------------------------->
+
+
+
+
 
 <!-- <p>Stock markets</p> 
 {%for stock_market in stock_markets%}

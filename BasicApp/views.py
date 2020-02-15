@@ -66,41 +66,40 @@ def data_manager(request):
     return HttpResponse(template.render(context, request)) 
 
 def update_stock_market_lookup_table(request):
+
+    # Read json file including info about stock markets.
     path = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
-    fname = os.path.join(path,"config","links.json")
+    fname = os.path.join(path,"config","stock_markets_info.json")
     with open(fname) as json_file:
         data = json.load(json_file)
 
-    link = data['list_of_stock_markets_on_wikipedia']
-
-    table_data = create_stock_market_tables_from_wikipedia(link)
-
-    num_samples = len(table_data['name'])
-
     added_markets = []
     skipped_markets = []
+    num_samples = len(data)
     for i in range(num_samples):
-        if not StockMarket.objects.filter(market_id=table_data['id'][i]).exists():
-            new_market = StockMarket(market_id=table_data['id'][i], 
-                        market_name=table_data['name'][i], 
-                        country=table_data['country'][i],
-                        city=table_data['city'][i],
-                        time_zone=table_data['sort'][i],
-                        open_time=table_data['open'][i],
-                        close_time=table_data['close'][i],
-                        lunch_break=table_data['lunch'][i])
-            new_market.save(table_data['id'][i])
-            added_markets.append()
+        if not StockMarket.objects.filter(market_id=data[i]['market_id']).exists():
+            new_market = StockMarket(market_id=data[i]['market_id'], 
+                        market_name=data[i]['market_name'], 
+                        country=data[i]['country'],
+                        city=data[i]['city'],
+                        time_zone=data[i]['time_zone'],
+                        open_time=data[i]['open_time'],
+                        close_time=data[i]['close_time'],
+                        lunch_break=data[i]['lunch_break'])
+
+            new_market.save()
+            added_markets.append(data[i]['market_id'])
+
         else:
-            print(StockMarket.objects.get(market_id=table_data['id'][i]), " exists.")
-            skipped_markets.append(table_data['id'][i])
+            print(StockMarket.objects.get(market_id=data[i]['market_id']), " exists.")
+            skipped_markets.append(data[i]['market_id'])
+
 
     log_info = "ADDED MARKETS:\n"
     log_info += ", ".join(added_markets)
     log_info += '\n'
     log_info += "SKIPPED MARKETS (they already exist in the database):\n"
     log_info += ", ".join(skipped_markets)
-
 
     stock_markets = StockMarket.objects.all()
     template = loader.get_template('data_manager.html')
@@ -157,3 +156,16 @@ def update_stock_lookup_table(request):
                 'log_info': log_info}
     return HttpResponse(template.render(context, request)) 
 
+
+
+def delete_stock_market_lookup_table(request):
+
+    cnt = StockMarket.objects.count()
+    StockMarket.objects.all().delete()
+
+    log_info = "{} stock markets are deleted.".format(cnt)
+    stock_markets = StockMarket.objects.all()
+    template = loader.get_template('data_manager.html')
+    context = {'stock_markets': stock_markets,
+                'log_info': log_info}
+    return HttpResponse(template.render(context, request)) 
