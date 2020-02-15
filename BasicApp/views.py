@@ -57,9 +57,10 @@ def delete_stock_market(request,market_id):
 def data_manager(request):
 
     stock_markets = StockMarket.objects.all()
-
+    log_info=''
     template = loader.get_template('data_manager.html')
-    context = {'stock_markets': stock_markets}
+    context = {'stock_markets': stock_markets,
+                'log_info': log_info}
     return HttpResponse(template.render(context, request)) 
 
 def update_stock_market_lookup_table(request):
@@ -74,10 +75,10 @@ def update_stock_market_lookup_table(request):
 
     num_samples = len(table_data['name'])
 
+    added_markets = []
+    skipped_markets = []
     for i in range(num_samples):
-
         if not StockMarket.objects.filter(market_id=table_data['id'][i]).exists():
-
             new_market = StockMarket(market_id=table_data['id'][i], 
                         market_name=table_data['name'][i], 
                         country=table_data['country'][i],
@@ -86,8 +87,21 @@ def update_stock_market_lookup_table(request):
                         open_time=table_data['open'][i],
                         close_time=table_data['close'][i],
                         lunch_break=table_data['lunch'][i])
-            new_market.save()
+            new_market.save(table_data['id'][i])
+            added_markets.append()
         else:
             print(StockMarket.objects.get(market_id=table_data['id'][i]), " exists.")
+            skipped_markets.append(table_data['id'][i])
 
-    return redirect("/BasicApp/data_manager")
+    log_info = "ADDED MARKETS:\n"
+    log_info += ", ".join(added_markets)
+    log_info += '\n'
+    log_info += "SKIPPED MARKETS (they already exist in the database):\n"
+    log_info += ", ".join(skipped_markets)
+
+
+    stock_markets = StockMarket.objects.all()
+    template = loader.get_template('data_manager.html')
+    context = {'stock_markets': stock_markets,
+                'log_info': log_info}
+    return HttpResponse(template.render(context, request)) 

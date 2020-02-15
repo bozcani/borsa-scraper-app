@@ -1,13 +1,45 @@
-Data manager
+<h1><b>Data Manager</b></h1>
 
 
+
+<h3><b>Update stock market lookup table</b></h3>
+<p> If you click the button below, stock_market_lookup_table will be updated according to the data on Wikipedia page. </p>
+<p> If stock market info already exists, it will be skipped. You can see skipped stock markets on the terminal.</p>
+<p> The best practice is click the button just once when fill the table, then you won't need it anymore.</p>
 <form action="/BasicApp/update_stock_market_lookup_table">
     <input type="submit" value="Update stock markets lookup table" />
 </form>
 
 
 
-<p>Stock markets</p> 
+<h3><b>Update stock lookup table</b></h3>
+<p> If you click the button below, stock_lookup_table will be updated according to the data on congif file. </p>
+<p> If stock info already exists, it will be skipped. You can see skipped stocks on the terminal.</p>
+<p> The best practice is click the button just once when fill the table, then you won't need it anymore.</p>
+<p> Choose a stock market from top down menu, and update the table. </p>
+<p> Currently only the Bist is avaliable. </p>
+
+{% if stock_markets %}
+
+<form action="/BasicApp/update_stock_market_lookup_table">
+    <select name="market_id">
+        {% for stock_market in stock_markets %}
+        <option value="{{ stock_market.market_id }}" selected="selected"> {{ stock_market.market_id }} </option>
+
+        {% endfor %}
+
+    </select>
+    <input type="submit" value="Update stocks lookup table for selected market"/>
+  </form>
+{% endif %}
+
+<a href="/BasicMarket/"> Goto homepage</a>
+
+{% if log_info %}
+    <p> {{log_info|linebreaks}} </p>
+{% endif %}
+
+<!-- <p>Stock markets</p> 
 {%for stock_market in stock_markets%}
 <tr> <p>
     <th scope="row">{{stock_market.market_id}}</th>
@@ -17,5 +49,5 @@ Data manager
     
 
 </tr>
-
 {%endfor%}    
+-->
