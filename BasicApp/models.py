@@ -33,11 +33,9 @@ class Stock(models.Model):
     def __str__(self):
         return "<Stock Object> stock_symbol {}, stock_name {}, stock_market {}".format(self.stock_symbol, self.stock_name, self.stock_market.market_id)
 
-class LookupTablesUpdateStatus(models.Model):
-    table_name = models.CharField(max_length=40, primary_key=True)    
-    last_update = models.TimeField(auto_now=True)
-    source = models.CharField(max_length=100)
 
 class StockDataLastUpdate(models.Model):
     stock_market = models.OneToOneField(Stock, on_delete=models.CASCADE, primary_key=True)
     last_update = models.DateTimeField()      
+
+class OHLCV    

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from django.http import HttpResponse
 from django.template import loader
-from .models import StockMarket, Stock, LookupTablesUpdateStatus
+from .models import StockMarket, Stock
 
 from lib.data_scraper.get_tickers_info import get_bist_tickers_info
 
