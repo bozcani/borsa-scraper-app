@@ -4,7 +4,6 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import StockMarket, Stock, LookupTablesUpdateStatus
 
-from lib.data_scraper.get_stock_markets_info import create_stock_market_tables_from_wikipedia
 from lib.data_scraper.get_tickers_info import get_bist_tickers_info
 
 import json
