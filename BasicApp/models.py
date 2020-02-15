@@ -38,4 +38,23 @@ class StockDataLastUpdate(models.Model):
     stock_market = models.OneToOneField(Stock, on_delete=models.CASCADE, primary_key=True)
     last_update = models.DateTimeField()      
 
-class OHLCV    
+class OHLCV(models.Model):
+    date = models.DateField()
+    stock_symbol = models.CharField(max_length=20)
+    open = models.FloatField()
+    high = models.FloatField()
+    low = models.FloatField()
+    close = models.FloatField()
+    volume = models.BigIntegerField()
+
+    class Meta:
+        db_table = 'OHLCV_table'
+
+    def __str__(self):
+        return "<OHLCV Object> date {}, stock_symbol {}, open {}, high {}, low {}, close {}, volume {}".format(self.date, 
+                                                                                                                self.stock_symbol, 
+                                                                                                                self.open, 
+                                                                                                                self.high,
+                                                                                                                self.low,
+                                                                                                                self.close,
+                                                                                                                self.volume)    
