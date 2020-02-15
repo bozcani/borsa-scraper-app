@@ -6,7 +6,7 @@ import os
 import datetime
 import calendar
 
-def date_to_unixtimestamp(date_str):
+def date_to_UXtimestamp(date_str):
     """DD-MM-YEAR to Unix timestamp"""
 
     date_list = date_str.split('-')
@@ -26,10 +26,24 @@ def get_ohlcv_from_yahoo_finance(stock_symbol, start_date, end_date):
         data = json.load(json_file)
 
     link = data['stock_data_sources']['yahoo_finance']    
-    t = datetime.datetime.fromtimestamp(1581379200)
-    print(t)
+    
+    if start_date == 'beginning':
+        start_ts = 0
+    else:    
+        start_ts = date_to_UXtimestamp(start_date)
+    
+    if end_date == 'today':
+        end_date = datetime.datetime.now()
+        end_date = "{}-{}-{}".format(end_date.day, end_date.month, end_date.year)
+        end_ts = date_to_UXtimestamp(end_date)
+    else:
+        end_ts = date_to_UXtimestamp(end_date)
 
-    print(stock_symbol, start_date, end_date, link)
+    link = link.replace("TICKER_SYMBOL", stock_symbol)
+    link = link.replace("START_PERIOD", str(start_ts))
+    link = link.replace("END_PERIOD", str(end_ts))
 
-#get_ohlcv_from_yahoo_finance("ISCTR", 0, 1)
+    print(link)
+    # TODO donwload data from the link, and return it.
+
 
