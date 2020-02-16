@@ -25,6 +25,6 @@ def get_bist_tickers_info(link_to_source):
 
         link = item.find("a",href=True).get("href")
 
-        res.append([tickers, name, "https://www.kap.org.tr/"+link])
+        res.append([[ticker+'.IS' for ticker in tickers], name, "https://www.kap.org.tr/"+link])
 
     return res
