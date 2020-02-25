@@ -36,7 +36,26 @@ class Stock(models.Model):
 
 class StockDataLastUpdate(models.Model):
     stock_market = models.OneToOneField(Stock, on_delete=models.CASCADE, primary_key=True)
-    last_update = models.DateTimeField()      
+    last_update = models.DateTimeField()  
+
+    class Meta:
+        db_table = 'StockDataLastUpdate_table'
+
+    def __str__(self):
+        return "<StockDataLastUpdate Object> stock_market {}, last_update {}".format(self.stock_market.market_id, self.last_update)
+
+class CookieCrumbPair(models.Model):
+    cookie = models.BinaryField()
+    crumb = models.CharField(max_length=20)
+    saved_date = models.DateTimeField()
+
+    class Meta:
+        db_table = 'CookieCrumbPair_table'
+
+    def __str__(self):
+        return "<CookieCrumbPair Object> cookie is binary, crumb {}, saved_date {}".format(self.crumb, self.saved_date)
+
+
 
 class OHLCV(models.Model):
     date = models.DateField()
@@ -58,3 +77,6 @@ class OHLCV(models.Model):
                                                                                                                 self.low,
                                                                                                                 self.close,
                                                                                                                 self.volume)    
+
+
+                                                                                                                
