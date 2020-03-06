@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from django.http import HttpResponse
 from django.template import loader
-from .models import StockMarket, Stock, CookieCrumbPair
+from .models import StockMarket, Stock, StockDataLastUpdate
 
 from lib.data_scraper.get_tickers_info import get_bist_tickers_info
 from lib.data_scraper.get_ohlcv import get_ohlcv_from_yahoo_finance, get_cookie_and_crumb
@@ -139,7 +139,11 @@ def update_stock_lookup_table(request):
                                         info_link = ticker_data[2])
                     added_stocks.append(ticker_data[0][0])
                     print("Added: ", new_stock )
-                    new_stock.save()                    
+                    new_stock.save()
+
+                    StockDataLastUpdate(stock=new_stock,
+                                        last_update=datetime(1900, 1, 1)).save() # No record
+
 
                 else:
                     print(Stock.objects.get(stock_symbol=ticker_data[0][0]), " exists.")
