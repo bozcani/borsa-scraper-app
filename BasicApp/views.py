@@ -2,12 +2,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from django.http import HttpResponse
 from django.template import loader
-from .models import StockMarket, Stock
+from .models import StockMarket, Stock, CookieCrumbPair
 
 from lib.data_scraper.get_tickers_info import get_bist_tickers_info
+from lib.data_scraper.get_ohlcv import get_ohlcv_from_yahoo_finance, get_cookie_and_crumb
 
+from datetime import datetime
 import json
 import os
+import pickle
 
 def home(request):
 
@@ -17,7 +20,7 @@ def home(request):
     template = loader.get_template('home.html')
     context = {'stock_markets': stock_markets,
                 'stocks': stocks}
-                
+
     return HttpResponse(template.render(context, request))    
 
 
@@ -157,6 +160,33 @@ def update_stock_lookup_table(request):
     context = {'stock_markets': stock_markets,
                 'log_info': log_info}
     return HttpResponse(template.render(context, request)) 
+
+
+
+
+def update_cookie_crumb_pair(request):
+    cookie, crumb = get_cookie_and_crumb()
+
+    path = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
+    cookie_fname = os.path.join(path,"config","yahoo_finance_cookie")
+    crumb_fname = os.path.join(path,"config","yahoo_finance_crumb")
+
+    # Write cookie and crumb binary
+    with open(cookie_fname, 'wb') as cookie_file, open(crumb_fname, 'wb') as crumb_file:
+        pickle.dump(cookie, cookie_file)
+        pickle.dump(crumb, crumb_file)
+
+    time = datetime.now()           
+
+    log_info = "Cookie is updated at time {} with new crumb: {}".format(time, crumb)
+    stock_markets = StockMarket.objects.all()
+    template = loader.get_template('data_manager.html')
+    context = {'stock_markets': stock_markets,
+                'log_info': log_info}
+    return HttpResponse(template.render(context, request)) 
+
+def update_ohlcv_table(request):
+    pass
 
 
 

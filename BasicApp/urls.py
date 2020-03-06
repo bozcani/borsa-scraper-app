@@ -14,4 +14,7 @@ urlpatterns = [
     path('data_manager/', views.data_manager, name='data_manager'),
     path('update_stock_market_lookup_table/', views.update_stock_market_lookup_table, name='update_stock_market_lookup_table'),
     path('update_stock_lookup_table/', views.update_stock_lookup_table, name='update_stock_lookup_table'),
-    path('delete_stock_market_lookup_table/', views.delete_stock_market_lookup_table, name='delete_stock_market_lookup_table')]
+    path('delete_stock_market_lookup_table/', views.delete_stock_market_lookup_table, name='delete_stock_market_lookup_table'),
+    path('update_cookie_crumb_pair/', views.update_cookie_crumb_pair, name='update_cookie_crumb_pair')]
+
+    
