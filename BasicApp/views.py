@@ -12,9 +12,12 @@ import os
 def home(request):
 
     stock_markets = StockMarket.objects.all()
+    stocks = Stock.objects.all()
 
     template = loader.get_template('home.html')
-    context = {'stock_markets': stock_markets}
+    context = {'stock_markets': stock_markets,
+                'stocks': stocks}
+                
     return HttpResponse(template.render(context, request))    
 
 

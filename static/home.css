@@ -1,13 +1,13 @@
-.add-new-stock{
-  width: 40%;
+.show-stocks{
+  width: 50%;
   float: left;
   
   
 }
 
-.show-new-stock{
+.show-stock-markets{
   padding-left: 5%;
-  width: 60%;
+  width: 45%;
   float: right;
   
 }

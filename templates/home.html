@@ -17,56 +17,49 @@
     <p id="title"><b>Welcome to BORSA homepage</b></p>
 
 
+           
+    <div class="show-stocks">
+        <p><b>Stocks</b></p>
+        {% if stocks %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Stock Name</th>
+                    <th scope="col">Market Id</th>
+                    <th scopre="col">Value</th>
+                    <th scope="col"></th>
+                    
+                </tr>
+                </thead>
 
+                <tbody>
+                    {%for stock in stocks%}
+                    <tr>
+                        <th scope="row">{{stock.stock_symbol}}</th>
+                        <td>{{stock.stock_name}}</td>
+                        <td>{{stock.stock_market.market_id}}</td>
+                        <td> 0 </td>
+                        <td><a href="delete_stock_market/{{stock_market.market_id}}/" class="btn btn-info">Delete</a></td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
 
-
-
-<div class="container">
-    <form action="/BasicApp/add_stock_market_result">
-        <div class="add-new-stock">
-            <p>Add new stock markets</p>
-            <div class="form-group">   
-                <p>
-                <input type="text" name="market_id" class="form-control"
-                                                placeholder="Market id" /> </p>
-
-                <p>
-                <input type="text" name="market_name" class="form-control"
-                                                    placeholder="Market name" /> </p>    
-                                                    
-                <p>
-                    <input type="text" name="country" class="form-control"
-                                                        placeholder="Country" /> </p>                                    
-
-                <p>
-                <input type="text" name="city" class="form-control"
-                                                    placeholder="City" /> </p>   
-
-                <p>
-                    <input type="text" name="time_zone" class="form-control"
-                                                        placeholder="Timezone" /> </p>
-
-                        
-                <p>
-                    <input type="text" name="open_time" class="form-control"
-                                                        placeholder="Open time" /> </p>                                    
-
-                <p>
-                <input type="text" name="close_time" class="form-control"
-                                                    placeholder="Close time" /> </p>   
-
-                <p>
-                    <input type="text" name="lunch_break" class="form-control"
-                                                        placeholder="Lunch break" /> </p>
-
-                <button type="submit" class="btn btn-success" value="Add">Submit</button>
+            {% else %}
+            <div class="alert alert-danger">
+                No stocks have been added yet...
             </div>
+            {% endif%}
         </div>
-    </form>
+
+
+
+
                                                 
 
            
-    <div class="show-new-stock">
+    <div class="show-stock-markets">
         <p><b>Stock markets</b></p>
 
         {% if stock_markets %}
@@ -107,14 +100,8 @@
                 No markets have been added yet...
             </div>
             {% endif%}
-                </div>
-            </div>
-    </div>
+        </div>
 
-       
-  
-
-</div>
 
  
 
