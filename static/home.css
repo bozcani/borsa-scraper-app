@@ -1,5 +1,5 @@
 .show-stocks{
-  width: 50%;
+  width: 60%;
   float: left;
   
   
@@ -7,7 +7,7 @@
 
 .show-stock-markets{
   padding-left: 5%;
-  width: 45%;
+  width: 40%;
   float: right;
   
 }
