@@ -1,0 +1,47 @@
+{% if stock %}
+    <ul>
+    <li>Stock symbol: {{ stock.stock_symbol }} </li>
+    <li>Stock name: {{ stock.stock_name }}</li>
+    <li>Stock market: {{ stock.stock_market.market_id }}</li>
+    <li>Info: {{ stock.info_link }}</li>
+
+    </ul>
+    
+    <a href="/BasicApp/"> Goto homepage</a>
+   
+    {% if ohlcv_data %}
+        
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Symbol</th>
+                <th scope="col">Open</th>
+                <th scopre="col">Low</th>
+                <th scope="col">High</th>
+                <th scope="col">Close</th>
+                
+            </tr>
+            </thead>
+
+            {%for ohlcv in ohlcv_data%}
+                <tbody>
+                    <tr>
+                        <th scope="row">{{ohlcv.date}}</th>
+                        <td>{{ohlcv.stock_symbol}}</td>
+                        <td>{{ohlcv.open}}</td>
+                        <td>{{ohlcv.low}}</td>
+                        <td>{{ohlcv.high}}</td>
+                        <td>{{ohlcv.close}}</td>
+                            </tr>
+                </tbody>
+            {%endfor%}
+ 
+        </table>
+{% else %} 
+        <p>Historical data does not exist.</p>   
+    {% endif %}
+
+{% else %}
+    <p>Stock does not exist.</p>
+{% endif %}
