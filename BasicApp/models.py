@@ -42,7 +42,7 @@ class StockDataLastUpdate(models.Model):
         db_table = 'StockDataLastUpdate_table'
 
     def __str__(self):
-        return "<StockDataLastUpdate Object> stock_market {}, last_update {}".format(self.stock_market.market_id, self.last_update)
+        return "<StockDataLastUpdate Object> stock_market {}, last_update {}".format(self.stock.stock_market.market_id, self.last_update)
 
 class OHLCV(models.Model):
     date = models.DateField()
