@@ -38,8 +38,8 @@
                     <tr>
                         <th scope="row">{{update.stock.stock_symbol}}</th>
                         <td>{{update.last_update}}</td>
-                        <td><a href="stock_history/{{stock_market.market_id}}/" class="btn btn-info">History</a></td>
-                        <td><a href="update_stock_ohlcv/{{stock_market.market_id}}/" class="btn btn-info">Update ohlcv</a></td>
+                        <td><a href="/BasicApp/stock_history/{{update.stock.stock_symbol}}/" class="btn btn-info">History</a></td>
+                        <td><a href="/BasicApp/update_stock_ohlcv/{{update.stock.stock_symbol}}/" class="btn btn-info">Update ohlcv</a></td>
 
                     </tr>
                     {%endfor%}
