@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '../static/data_update_status.css' %}">
+
+    
+</head>
+<body>
+
+    <p id="title"><b>Stock Data Update Status</b></p>
+
+
+           
+    <div class="show-stock-updates">
+        <p><b>Stock Data Update Status</b></p>
+        {% if last_updates %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Last Update</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+
+                    
+                </tr>
+                </thead>
+
+                <tbody>
+                    {%for update in last_updates%}
+                    <tr>
+                        <th scope="row">{{update.stock.stock_symbol}}</th>
+                        <td>{{update.last_update}}</td>
+                        <td><a href="stock_history/{{stock_market.market_id}}/" class="btn btn-info">History</a></td>
+                        <td><a href="update_stock_ohlcv/{{stock_market.market_id}}/" class="btn btn-info">Update ohlcv</a></td>
+
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+
+            {% else %}
+            <div class="alert alert-danger">
+                No stocks have been added yet...
+            </div>
+            {% endif%}
+        </div>
+
+        <div class="show-stock-board">
+            <p><b>Control Board</b></p>
+            <p><a href="/BasicApp/" class="btn btn-primary">Goto homepage</a></p>
+            <p><a href="/BasicApp/" class="btn btn-primary">Update all</a></p>
+
+        </div>
+   
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
+

@@ -192,6 +192,17 @@ def update_cookie_crumb_pair(request):
 def update_ohlcv_table(request):
     pass
 
+def data_update_status(request):
+    template = loader.get_template('data_update_status.html')
+
+    last_updates = StockDataLastUpdate.objects.all()
+
+
+    context = {'last_updates':last_updates}
+
+    return HttpResponse(template.render(context, request))    
+
+
 
 
 def delete_stock_market_lookup_table(request):

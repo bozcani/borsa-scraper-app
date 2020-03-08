@@ -12,6 +12,7 @@ urlpatterns = [
     path('stock_market/<str:market_id>/', views.stock_market, name='stock_market'),
     path('delete_stock_market/<str:market_id>/', views.delete_stock_market, name='delete_stock_market'),
     path('data_manager/', views.data_manager, name='data_manager'),
+    path('data_update_status/', views.data_update_status, name='data_update_status'),
     path('update_stock_market_lookup_table/', views.update_stock_market_lookup_table, name='update_stock_market_lookup_table'),
     path('update_stock_lookup_table/', views.update_stock_lookup_table, name='update_stock_lookup_table'),
     path('delete_stock_market_lookup_table/', views.delete_stock_market_lookup_table, name='delete_stock_market_lookup_table'),

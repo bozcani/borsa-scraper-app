@@ -1,0 +1,19 @@
+.show-stock-updates{
+    width: 60%;
+    float: left;
+    
+    
+  }
+  
+  .show-board{
+    padding-left: 5%;
+    width: 40%;
+    float: right;
+    
+  }
+  
+  #title{
+    padding: 2%;
+    text-align: center;
+    
+  }
