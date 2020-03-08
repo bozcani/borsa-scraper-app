@@ -68,7 +68,7 @@ def get_ohlcv_from_yahoo_finance(ticker_symbol, start_date, end_date, cookie, cr
 
     if response.status_code!=200:
         print(response.content)
-        raise RuntimeError("Cookie does not work: {}".format(response.status_code))
+        raise RuntimeError("Error code: {}".format(response.status_code))
 
     data = []
     for c in content[1:]:
