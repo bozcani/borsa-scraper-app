@@ -195,41 +195,50 @@ def update_stock_ohlcv(request, stock_symbol):
     print(stock_symbol)
 
     # Get stock and last update date.
-    stock = Stock.objects.filter(stock_symbol=stock_symbol)[0]
-    last_update = StockDataLastUpdate.objects.filter(stock=stock)[0]
+    stocks = Stock.objects.filter(stock_symbol=stock_symbol)
 
-    # Prepare yahoo finance cookie and crumb.
-    path = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
-    cookie_fname = os.path.join(path,"config","yahoo_finance_cookie")
-    crumb_fname = os.path.join(path,"config","yahoo_finance_crumb")
+    if len(stocks)==0:
+        pass
+    else:
+        stock = stocks[0]
+        last_update = StockDataLastUpdate.objects.filter(stock=stock)[0]
+    
+        # Prepare yahoo finance cookie and crumb.
+        path = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
+        cookie_fname = os.path.join(path,"config","yahoo_finance_cookie")
+        crumb_fname = os.path.join(path,"config","yahoo_finance_crumb")
 
-    with open(cookie_fname, 'rb') as cookie_file, open(crumb_fname, 'rb') as crumb_file:
-        cookie = pickle.load(cookie_file)
-        crumb = pickle.load(crumb_file)
+        with open(cookie_fname, 'rb') as cookie_file, open(crumb_fname, 'rb') as crumb_file:
+            cookie = pickle.load(cookie_file)
+            crumb = pickle.load(crumb_file)
 
-    # Get ohlcv data.
-    start_date = last_update.last_update
-    start_date = "{}-{}-{}".format(start_date.day, start_date.month, start_date.year)
-    end_date = date.today()
-    end_date = "{}-{}-{}".format(end_date.day, end_date.month, end_date.year)
-    ohlcv_data = get_ohlcv_from_yahoo_finance(stock_symbol, start_date, end_date, cookie, crumb)
+        # Get ohlcv data.
+        start_date = last_update.last_update
+        start_date = "{}-{}-{}".format(start_date.day, start_date.month, start_date.year)
+        end_date = date.today()
+        end_date = "{}-{}-{}".format(end_date.day, end_date.month, end_date.year)
+        try:
+            ohlcv_data = get_ohlcv_from_yahoo_finance(stock_symbol, start_date, end_date, cookie, crumb)
+        except:
+            ohlcv_data = []    
 
-    # Save ohlcv data to the database.
-    for data in ohlcv_data:
-        ohlcv = OHLCV(date=data['date'],
-                        stock_symbol=data['symbol'],
-                        open = data['open'],
-                        high = data['high'],
-                        low = data['low'],
-                        close = data['close'],
-                        volume = data['volume']
-                        )
+        # Save ohlcv data to the database.
+        for data in ohlcv_data:
+            ohlcv = OHLCV(date=data['date'],
+                            stock_symbol=data['symbol'],
+                            open = data['open'],
+                            high = data['high'],
+                            low = data['low'],
+                            close = data['close'],
+                            volume = data['volume']
+                            )
 
-        ohlcv.save()
+            ohlcv.save()
 
-    # Update StockDataLastUpdate
-    last_update.last_update = ohlcv_data[-1]['date']
-    last_update.save()
+        # Update StockDataLastUpdate
+        if len(ohlcv_data)!=0:
+            last_update.last_update = ohlcv_data[-1]['date']
+            last_update.save()
 
     template = loader.get_template('data_update_status.html')
     last_updates = StockDataLastUpdate.objects.all()
@@ -239,14 +248,20 @@ def update_stock_ohlcv(request, stock_symbol):
 
 def data_update_status(request):
     template = loader.get_template('data_update_status.html')
-
     last_updates = StockDataLastUpdate.objects.all()
-
-
     context = {'last_updates':last_updates}
-
     return HttpResponse(template.render(context, request))    
 
+def update_all_stock_ohlcv(request):
+    stocks = Stock.objects.all()
+    for stock in stocks:
+        print(stock)
+        update_stock_ohlcv(request, stock.stock_symbol)
+
+    template = loader.get_template('data_update_status.html')
+    last_updates = StockDataLastUpdate.objects.all()
+    context = {'last_updates':last_updates}
+    return HttpResponse(template.render(context, request))    
 
 
 
