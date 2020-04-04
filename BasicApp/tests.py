@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 
 from django.urls import reverse, resolve
-from .views import home, stock_market, delete_stock_market, data_manager, data_update_status
+from .views import home, stock_market, delete_stock_market, data_manager, data_update_status, stock_history
 from .models import StockMarket, Stock, OHLCV, StockDataLastUpdate
 import datetime
 
@@ -225,3 +225,50 @@ class DataUpdateStatusTests(TestCase):
         response = self.client.get(url)
         button_link = reverse('BasicApp:update_stock_ohlcv', kwargs={'stock_symbol': 'SAMPLE_STOCK'})
         self.assertContains(response, "a href=\"{}\"".format(button_link))
+
+
+class StockHistroyTests(TestCase):
+    def setUp(self):
+        StockMarket.objects.create(market_id='SAMPLE_STOCK_MARKET', 
+                                    market_name='Test stock market',
+                                    country='Turkey',
+                                    city='Buharkent',
+                                    time_zone=3,
+                                    open_time='10:00',
+                                    close_time='18:00',
+                                    lunch_break='13:00-14:00')
+
+        Stock.objects.create(stock_symbol='SAMPLE_STOCK', 
+                                    stock_name='Test stock market',
+                                    stock_market=StockMarket.objects.filter(market_id='SAMPLE_STOCK_MARKET')[0],
+                                    info_link='emtpy_link')
+
+        """
+        OHLCV.objects.create(date=datetime.datetime(1993, 6, 16),
+                            stock_symbol="SAMPLE_STOCK",
+                            open = 1.,
+                            high = 1.,
+                            low = 1.,
+                            close = 1.,
+                            volume = 1)   
+        """
+
+        StockDataLastUpdate.objects.create(stock=Stock.objects.get(stock_symbol='SAMPLE_STOCK'),
+                                            last_update=datetime.datetime(2020,2,2))                 
+    
+    def test_StockHistroy_view_success_status_code(self):
+        url = reverse('BasicApp:stock_history', args=['SAMPLE_STOCK'])
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+
+    def test_StockHistroy_url_resolves_new_topic_view(self):
+        view = resolve('/BasicApp/stock_history/SAMPLE_STOCK/')
+        self.assertEquals(view.func, stock_history)   
+
+    
+    def test_view_contains_link_back_to_homepage(self):
+        url = reverse('BasicApp:stock_history', args=['SAMPLE_STOCK'])
+        response = self.client.get(url)
+        homepage_url = reverse('BasicApp:home')
+        self.assertContains(response, 'href="{}"'.format(homepage_url)) 
