@@ -241,14 +241,14 @@ def update_stock_ohlcv(request, stock_symbol):
             last_update.save()
 
     template = loader.get_template('data_update_status.html')
-    last_updates = StockDataLastUpdate.objects.all()
+    last_updates = StockDataLastUpdate.objects.all().order_by("stock_id")
     context = {'last_updates':last_updates}
     return HttpResponse(template.render(context, request))    
 
 
 def data_update_status(request):
     template = loader.get_template('data_update_status.html')
-    last_updates = StockDataLastUpdate.objects.all()
+    last_updates = StockDataLastUpdate.objects.all().order_by("stock_id")
     context = {'last_updates':last_updates}
     return HttpResponse(template.render(context, request))    
 
