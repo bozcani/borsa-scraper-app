@@ -55,6 +55,7 @@ class OHLCV(models.Model):
 
     class Meta:
         db_table = 'OHLCV_table'
+        unique_together = ('date', 'stock_symbol')
 
     def __str__(self):
         return "<OHLCV Object> date {}, stock_symbol {}, open {}, high {}, low {}, close {}, volume {}".format(self.date, 

@@ -19,6 +19,8 @@ urlpatterns = [
     path('delete_stock_market_lookup_table/', views.delete_stock_market_lookup_table, name='delete_stock_market_lookup_table'),
     path('update_cookie_crumb_pair/', views.update_cookie_crumb_pair, name='update_cookie_crumb_pair'),
     path('update_stock_ohlcv/<str:stock_symbol>/', views.update_stock_ohlcv, name='update_stock_ohlcv'),
-    path('update_all_stock_ohlcv/', views.update_all_stock_ohlcv, name='update_all_stock_ohlcv')]
 
-    
+    path('remove_all_stock_ohlcv_duplicates/', views.remove_all_stock_ohlcv_duplicates, name='remove_all_stock_ohlcv_duplicates'),
+    path('remove_stock_ohlcv_duplicates/<str:stock_symbol>/', views.remove_stock_ohlcv_duplicates, name='remove_stock_ohlcv_duplicates'),
+
+    path('update_all_stock_ohlcv/', views.update_all_stock_ohlcv, name='update_all_stock_ohlcv')]

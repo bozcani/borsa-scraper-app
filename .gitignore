@@ -3,3 +3,4 @@
 config.json
 yahoo_finance_cookie
 yahoo_finance_crumb
+*.pgsql

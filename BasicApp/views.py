@@ -7,7 +7,7 @@ from .models import StockMarket, Stock, StockDataLastUpdate, OHLCV, StockDataLas
 from lib.data_scraper.get_tickers_info import get_bist_tickers_info
 from lib.data_scraper.get_ohlcv import get_ohlcv_from_yahoo_finance, get_cookie_and_crumb
 
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 import json
 import os
 import pickle
@@ -213,7 +213,7 @@ def update_stock_ohlcv(request, stock_symbol):
             crumb = pickle.load(crumb_file)
 
         # Get ohlcv data.
-        start_date = last_update.last_update
+        start_date = last_update.last_update + timedelta(days=1)
         start_date = "{}-{}-{}".format(start_date.day, start_date.month, start_date.year)
         end_date = date.today()
         end_date = "{}-{}-{}".format(end_date.day, end_date.month, end_date.year)
@@ -285,3 +285,45 @@ def stock_history(request, stock_symbol):
         'ohlcv_data':ohlcv_data
     }
     return render(request, 'stock_history.html', context)    
+
+
+# TODO Implement this.
+def remove_all_stock_ohlcv_duplicates(request):
+
+    stocks = Stock.objects.all()
+    for stock in stocks:
+        print(stock)
+        remove_stock_ohlcv_duplicates(request, stock.stock_symbol)
+   
+
+    template = loader.get_template('data_update_status.html')
+    last_updates = StockDataLastUpdate.objects.all()
+    context = {'last_updates':last_updates}
+    return HttpResponse(template.render(context, request))        
+
+
+# TODO Implement this.
+def remove_stock_ohlcv_duplicates(request, stock_symbol):
+    
+    print(stock_symbol)
+    # Get stock and last update date.
+    ohlcv_records = OHLCV.objects.filter(stock_symbol=stock_symbol)
+
+    date_bucket = []
+    num_deleted = 0
+    if len(ohlcv_records)==0:
+        pass
+    else:
+        for ohlcv in ohlcv_records:
+            if ohlcv.date in date_bucket:
+                ohlcv.delete()
+                num_deleted += 1
+            else:
+                date_bucket.append(ohlcv.date)    
+
+    print("Duplicates found and deleted: {}".format(num_deleted))
+    
+    template = loader.get_template('data_update_status.html')
+    last_updates = StockDataLastUpdate.objects.all().order_by("stock_id")
+    context = {'last_updates':last_updates}
+    return HttpResponse(template.render(context, request))    
