@@ -232,7 +232,6 @@ def update_stock_ohlcv(request, stock_symbol):
                             close = data['close'],
                             volume = data['volume']
                             )
-
             ohlcv.save()
 
         # Update StockDataLastUpdate
