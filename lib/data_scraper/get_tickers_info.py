@@ -28,3 +28,21 @@ def get_bist_tickers_info(link_to_source):
         res.append([[ticker+'.IS' for ticker in tickers], name, "https://www.kap.org.tr/"+link])
 
     return res
+
+
+def get_bist_indexes_info(link_to_source):
+
+    a = urllib.urlretrieve(link_to_source)
+    a = open(a[0], "r")
+    soup = BeautifulSoup(a, 'html.parser')
+    items = soup.findAll("a", {"class":"w-inline-block sub-leftresultbox"})
+
+    res = []
+    for item in items:
+        name = item.find("div", {'class': "type-normal bold"}).text
+        symbol = item.findAll("div", {'class': "type-normal"})[1].text
+        info = item.find("div", {'class': "type-xsmall"}).text
+        res.append({"symbol":symbol+'.IS', 
+                    "name":name, 
+                    "info":info})
+    return res
