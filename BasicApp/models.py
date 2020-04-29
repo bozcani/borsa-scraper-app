@@ -46,7 +46,7 @@ class StockDataLastUpdate(models.Model):
 
 class OHLCV(models.Model):
     date = models.DateField()
-    stock_symbol = models.CharField(max_length=20)
+    symbol = models.CharField(max_length=20)
     open = models.FloatField()
     high = models.FloatField()
     low = models.FloatField()
@@ -55,11 +55,11 @@ class OHLCV(models.Model):
 
     class Meta:
         db_table = 'OHLCV_table'
-        unique_together = ('date', 'stock_symbol')
+        unique_together = ('date', 'symbol')
 
     def __str__(self):
-        return "<OHLCV Object> date {}, stock_symbol {}, open {}, high {}, low {}, close {}, volume {}".format(self.date, 
-                                                                                                                self.stock_symbol, 
+        return "<OHLCV Object> date {}, symbol {}, open {}, high {}, low {}, close {}, volume {}".format(self.date, 
+                                                                                                                self.symbol, 
                                                                                                                 self.open, 
                                                                                                                 self.high,
                                                                                                                 self.low,

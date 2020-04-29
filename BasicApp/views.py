@@ -225,7 +225,7 @@ def update_stock_ohlcv(request, stock_symbol):
         # Save ohlcv data to the database.
         for data in ohlcv_data:
             ohlcv = OHLCV(date=data['date'],
-                            stock_symbol=data['symbol'],
+                            symbol=data['symbol'],
                             open = data['open'],
                             high = data['high'],
                             low = data['low'],
@@ -279,7 +279,7 @@ def delete_stock_market_lookup_table(request):
 
 def stock_history(request, stock_symbol):
     stock = Stock.objects.filter(stock_symbol=stock_symbol)
-    ohlcv_data = OHLCV.objects.filter(stock_symbol=stock_symbol).order_by('-date')
+    ohlcv_data = OHLCV.objects.filter(symbol=stock_symbol).order_by('-date')
     context = {
         'stock':stock[0],
         'ohlcv_data':ohlcv_data
@@ -307,7 +307,7 @@ def remove_stock_ohlcv_duplicates(request, stock_symbol):
     
     print(stock_symbol)
     # Get stock and last update date.
-    ohlcv_records = OHLCV.objects.filter(stock_symbol=stock_symbol)
+    ohlcv_records = OHLCV.objects.filter(symbol=stock_symbol)
 
     date_bucket = []
     num_deleted = 0
